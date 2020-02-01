@@ -3,7 +3,7 @@ import pymongo
 
 class DB:
     def __init__(self):
-        self.mongodb_client = pymongo.MongoClient('47.95.112.185', 27017)
+        self.mongodb_client = pymongo.MongoClient('localhost', 27017)
         self.db = self.mongodb_client.get_database('study')
 
     def insert(self, collection, data):
@@ -22,8 +22,8 @@ class DB:
 
 if __name__ == '__main__':
     db = DB()
-    new_date = '2020-01-29 00:00:00'
-    old_date = '2020-01-28 00:00:00'
+    new_date = '2020-02-01 00:00:00'
+    old_date = '2020-01-31 00:00:00'
     data = db.statistics_data(new_date)
     new_data = ''
     for d in data:
@@ -41,4 +41,4 @@ if __name__ == '__main__':
             d['suspectedCount'] = d['suspectedCount'] - new_data['suspectedCount']
             d['curedCount'] = d['curedCount'] - new_data['curedCount']
             d['deadCount'] = d['deadCount'] - new_data['deadCount']
-            db.insert('data', d)
+            db.insert('data3', d)
